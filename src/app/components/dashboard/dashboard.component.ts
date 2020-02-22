@@ -14,7 +14,7 @@ export class DashboardComponent implements OnInit {
   constructor(private route: ActivatedRoute, private service: DashboardService, private dialog: MatDialog,
               private snackBar: MatSnackBar ) { }
   registrants: any;
-  numCheckedIn: number;
+  numCheckedIn: any;
   ngOnInit() {
     this.service.getStats('numCheckedIn').subscribe(data => this.numCheckedIn = data['numCheckedIn']);
   }
