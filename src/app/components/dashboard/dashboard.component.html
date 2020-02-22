@@ -1,6 +1,6 @@
 <mat-card>
   <mat-card-title>Registrants</mat-card-title>
-  <mat-card-subtitle>Checked-in: {{numCheckedIn}}</mat-card-subtitle>
+  <mat-card-subtitle>Checked-in: {{numCheckedIn.all}} (Confirmed: {{numCheckedIn.confirmed}})</mat-card-subtitle>
   <mat-form-field style="width:30%">
     <input matInput placeholder="Search for registrant by email or name" (input)="onSearchChange($event.target.value)">
   </mat-form-field>
