@@ -6,6 +6,18 @@ canvas {
     left: 0px;
     top: 7%;
 }
+table {
+    width: 100%;
+}
+.email-col .true {
+    color: green;
+}
+.email-col .false {
+    color: red;
+}
+.search-box {
+    width: 100%;
+}
 #closeButton {
     color: wheat;
     position: absolute;

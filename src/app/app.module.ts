@@ -5,7 +5,7 @@ import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule, MatIconModule, MatTableModule, MatRippleModule, MatBottomSheetModule,
-         MatToolbarModule, MatDialogModule, MatSnackBarModule, MatMenuModule } from '@angular/material';
+         MatToolbarModule, MatDialogModule, MatSnackBarModule, MatMenuModule, MatPaginatorModule, MatProgressSpinnerModule } from '@angular/material';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
@@ -14,14 +14,15 @@ import { MatChipsModule } from '@angular/material/chips';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './components/login/login.component';
 import { AuthInterceptor } from './services/http_interceptor';
-import { DashboardComponent, CheckInDialogComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { RegistrantViewComponent } from './components/dashboard/registrant-view/registrant-view.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     DashboardComponent,
-    CheckInDialogComponent
+    RegistrantViewComponent
   ],
   imports: [
     BrowserModule,
@@ -38,13 +39,16 @@ import { DashboardComponent, CheckInDialogComponent } from './components/dashboa
     MatTableModule,
     MatRippleModule,
     MatMenuModule,
+    MatPaginatorModule,
     MatBottomSheetModule,
     MatToolbarModule,
     MatDialogModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatProgressSpinnerModule,
+    MatButtonModule
   ],
   entryComponents: [
-    CheckInDialogComponent
+    RegistrantViewComponent
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
