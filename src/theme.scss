@@ -44,7 +44,7 @@ $revuc-accent-colors: (
     200: $dark-primary-text,
     300: $dark-primary-text,
     400: $dark-primary-text,
-    500: $light-primary-text,
+    500: $dark-primary-text,
     600: $light-primary-text,
     700: $light-primary-text,
     800: $light-primary-text,
@@ -52,8 +52,8 @@ $revuc-accent-colors: (
   )
 );
 
-$revuc-primary: mat-palette($revuc-primary-colors);
-$revuc-accent: mat-palette($revuc-accent-colors);
+$revuc-primary: mat-palette($revuc-primary-colors, 800, 300, 900);
+$revuc-accent: mat-palette($revuc-accent-colors, 200, 100, 500);
 
 $revuc-warn: mat-palette($mat-red);
 
