@@ -1,10 +1,9 @@
 <h2 mat-dialog-title>{{reg.firstName}} {{reg.lastName}}</h2>
-<mat-spinner *ngIf="isLoading; else registrantData"></mat-spinner>
-<ng-template #registrantData>
+<ng-template *ngIf="registrant$ | async as registrant; else loading">
   <div mat-dialog-content>
     <p><strong>Email: </strong>{{registrant.email}}</p>
     <p><strong>Phone: </strong>{{registrant.phoneNumber}}</p>
-    <p><strong>school: </strong>{{registrant.school}}</p>
+    <p><strong>School: </strong>{{registrant.school}}</p>
     <p><strong>Major: </strong>{{registrant.major}}</p>
     <p><strong>Gender: </strong>{{registrant.gender}}</p>
     <p><strong>Ethnicity: </strong>{{registrant.ethnicity}}</p>
@@ -20,13 +19,11 @@
     <p><strong>Created at: </strong>{{registrant.createdAt}}</p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button (click)="closeDialog()">Edit</button>
-
     <button mat-button color="primary" (click)="closeDialog()" [disabled]="registrant.emailVerfied">
       {{registrant.emailVerfied ? 'Email Verified' : 'Verify Email'}}
     </button>
     
-    <div *ngIf="registrant.checkedIn; then checkInBtn else uncheckInBtn"></div>
+    <ng-container *ngIf="registrant.checkedIn; then checkInBtn else uncheckInBtn"></ng-container>
     <ng-template #checkInBtn>
       <button mat-button color="accent" (click)="closeDialog()">Check In</button>
     </ng-template>
@@ -34,6 +31,7 @@
       <button mat-button color="warn" (click)="closeDialog()">Un-check In</button>
     </ng-template>
     
-    <button mat-button (click)="closeDialog()">Cancel</button>
+    <button mat-button (click)="closeDialog()">Close</button>
   </div>
 </ng-template>
+<mat-spinner #loading></mat-spinner>

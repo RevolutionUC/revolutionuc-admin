@@ -1,11 +1,13 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DashboardComponent } from './layout/dashboard/dashboard.component';
 
 import { environment } from '../environments/environment';
-import { LoginComponent } from './components/login/login.component';
+import { LoginComponent } from './pages/login/login.component';
 import { AuthGuard } from './auth.guard';
+import { RegistrantsComponent } from './pages/registrants/registrants.component';
+import { UsersComponent } from './pages/users/users.component';
 
 const appRoutes: Routes = [
   {
@@ -15,7 +17,18 @@ const appRoutes: Routes = [
   {
     path: '',
     component: DashboardComponent,
-    canActivate: [AuthGuard]
+    children: [
+      {
+        path: '',
+        component: RegistrantsComponent,
+        canActivate: [AuthGuard]
+      },
+      {
+        path: 'users',
+        component: UsersComponent,
+        canActivate: [AuthGuard]
+      }
+    ]
   }
   // { path: '**', component: PageNotFoundComponent }
 ];
@@ -24,11 +37,11 @@ const appRoutes: Routes = [
   imports: [
     RouterModule.forRoot(
       appRoutes,
-      { enableTracing: !environment.production }
+      // { enableTracing: !environment.production }
     )
   ],
   exports: [
     RouterModule
   ]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

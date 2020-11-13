@@ -8,7 +8,7 @@ import { Registrant, RegistrantLite } from '../interfaces/registrant';
   providedIn: 'root'
 })
 export class DashboardService {
-  private BASE_URL: string = environment.BASE_URL;
+  private BASE_URL: string = `${environment.BASE_URL}/admin`;
 
   constructor(private http: HttpClient) {}
 
