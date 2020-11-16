@@ -1,5 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { MatDialog, PageEvent } from '@angular/material';
+import { MatDialog } from '@angular/material/dialog';
+import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, combineLatest, Observable, of, timer } from 'rxjs';
 import { catchError, debounce, flatMap, map, tap } from 'rxjs/operators';
 
