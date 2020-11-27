@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Pagination } from '../../interfaces/pagination';
 import { Registrant, RegistrantLite } from '../../interfaces/registrant';
+import { SendEmailDto } from 'src/app/interfaces/email';
 
 @Injectable({
   providedIn: 'root'
@@ -20,6 +21,10 @@ export class RegistrantsService {
 
   getRegistrant(uuid: string) {
     return this.http.get<Registrant>(`${this.BASE_URL}/registrants/${uuid}`);
+  }
+
+  sendEmail(payload: SendEmailDto) {
+    return this.http.post<void>(`${this.BASE_URL}/registrants/email`, payload);
   }
 
   checkInUser(uuid: string) {

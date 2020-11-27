@@ -1,10 +1,10 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { Observable } from 'rxjs';
+import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 
 import { Registrant, RegistrantLite } from 'src/app/interfaces/registrant';
 import { RegistrantsService } from '../registrants.service';
+import { SendEmailDialogComponent } from '../send-email-dialog/send-email-dialog.component';
 
 @Component({
   selector: 'registrant-view',
@@ -12,22 +12,27 @@ import { RegistrantsService } from '../registrants.service';
   styleUrls: ['./registrant-view.component.css'],
 })
 export class RegistrantViewComponent implements OnInit {
-  registrant$: Observable<Registrant>;
+  registrant: Registrant;
   isLoading = true;
 
   constructor(
     @Inject(MAT_DIALOG_DATA) public reg: RegistrantLite,
     public ref: MatDialogRef<RegistrantViewComponent>,
+    private dialog: MatDialog,
     private service: RegistrantsService
   ) {}
 
   ngOnInit() {
-    this.registrant$ = this.service.getRegistrant(this.reg.id).pipe(
+    this.service.getRegistrant(this.reg.id).pipe(
       map(registrant => ({
         ...registrant,
         dateOfBirth: new Date(registrant.dateOfBirth).toLocaleDateString()
       }))
-    );
+    ).subscribe(registrant => this.registrant = registrant);
+  }
+
+  sendEmail() {
+    this.dialog.open(SendEmailDialogComponent, { width: `50%`, data: this.registrant.email });
   }
 
   closeDialog() {

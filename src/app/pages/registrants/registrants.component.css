@@ -29,3 +29,7 @@ mat-card {
     top: 2%;
     cursor: pointer;
 }
+.send-all {
+    float: right;
+    top: -65px
+}

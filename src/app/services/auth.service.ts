@@ -1,7 +1,7 @@
-import { Injectable, Optional, SkipSelf } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { environment } from '../../environments/environment';
 import { Login, User } from '../interfaces/User';
 
@@ -10,42 +10,43 @@ import { Login, User } from '../interfaces/User';
 })
 export class AuthService {
   private BASE_URL: string = environment.BASE_URL;
-  private tokenStorageKey = `token`;
 
+  private tokenStorageKey = `token`;
+  token: string = null;
+
+  private userStorageKey = `user`;
   user: User = null;
 
-  constructor(private http: HttpClient, @Optional() @SkipSelf() parent?: AuthService) {
-    if (parent) {
-      console.log({ parent, this: this });
-      throw new Error(`RED ALERT RED ALERT`);
-    }
+  constructor(private http: HttpClient) {
+    this.token = localStorage.getItem(this.tokenStorageKey);
+    this.user = JSON.parse(localStorage.getItem(this.userStorageKey));
   }
 
   login(username: string, password: string): Observable<Login> {
     return this.http.post<Login>(`${this.BASE_URL}/admin/login`, { username, password }).pipe(
-      map(({ token, user }) => {
+      tap(({ token, user }) => {
         localStorage.setItem(this.tokenStorageKey, token);
-        console.log({ this: this });
+        this.token = token;
+
+        localStorage.setItem(this.userStorageKey, JSON.stringify(user));
         this.user = user;
-        console.log(`map`, { user: this.user });
-        return { token, user };
       })
     );
   }
 
   logout(): void {
-    console.log(`logout()`);
     localStorage.removeItem(this.tokenStorageKey);
+    this.token = null;
+
+    localStorage.removeItem(this.userStorageKey);
     this.user = null;
   }
 
   getToken(): string {
-    return localStorage.getItem(this.tokenStorageKey);
+    return this.token;
   }
 
   isUserLoggedIn(): boolean {
-    console.log({ this: this });
-    console.log(`isUserLoggedIn`, { user: this.user });
     return !!this.user;
   }
 }

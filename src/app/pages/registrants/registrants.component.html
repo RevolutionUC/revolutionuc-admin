@@ -1,6 +1,7 @@
 <mat-card>
   <mat-card-title>Registrants</mat-card-title>
   <mat-card-subtitle>Not Checked-in: {{numCheckedIn}}</mat-card-subtitle>
+  <button mat-button color="primary" (click)="sendEmailToAll()" class="send-all">Send email to all</button>
   <mat-grid-list cols="2" rowHeight="100px">
     <mat-grid-tile [colspan]="1">
       <mat-form-field class="search-box">
@@ -36,7 +37,7 @@
       <ng-container matColumnDef="email">
         <th mat-header-cell *matHeaderCellDef>Email</th>
         <td mat-cell *matCellDef="let reg" class="email-col">
-          <span [class]="reg.emailVerfied">{{reg.email}}</span>
+          <span [class]="reg.emailVerfied.toString()">{{reg.email}}</span>
         </td>
       </ng-container>
 

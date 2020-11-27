@@ -1,13 +1,14 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, combineLatest, Observable, of, timer } from 'rxjs';
-import { catchError, debounce, flatMap, map, tap } from 'rxjs/operators';
+import { catchError, debounce, flatMap, map } from 'rxjs/operators';
 
 import { RegistrantLite } from 'src/app/interfaces/registrant';
-import { Pagination, PaginationMeta } from 'src/app/interfaces/pagination';
+import { Pagination } from 'src/app/interfaces/pagination';
 import { RegistrantViewComponent } from './registrant-view/registrant-view.component';
 import { RegistrantsService } from './registrants.service';
+import { SendEmailDialogComponent } from './send-email-dialog/send-email-dialog.component';
 
 @Component({
   selector: 'registrants',
@@ -40,10 +41,10 @@ export class RegistrantsComponent implements OnInit {
   }
 
   searchRegistrants() {
-    this.registrantSearch$ = combineLatest(
+    this.registrantSearch$ = combineLatest([
       this.searchPage$,
       this.searchQuery$.pipe(debounce(() => timer(500)))
-    ).pipe(
+    ]).pipe(
       flatMap(
         ([{ page, limit }, q]) => this.service.searchRegistrants({ page, limit, q })
       ),
@@ -58,7 +59,6 @@ export class RegistrantsComponent implements OnInit {
         return of(null);
       })
     );
-    this.registrantSearch$.subscribe(d => console.log({d}));
   }
 
   onSearch(text: string) {
@@ -71,5 +71,9 @@ export class RegistrantsComponent implements OnInit {
 
   viewRegistrant(data: RegistrantLite) {
     this.dialog.open(RegistrantViewComponent, { width: `50%`, data });
+  }
+
+  sendEmailToAll() {
+    this.dialog.open(SendEmailDialogComponent, { width: `50%`, data: `all` });
   }
 }
