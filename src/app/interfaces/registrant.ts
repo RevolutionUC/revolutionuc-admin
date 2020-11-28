@@ -1,4 +1,4 @@
-export class Registrant {
+export interface Registrant {
   id: string;
   firstName: string;
   lastName: string;
@@ -26,7 +26,7 @@ export class Registrant {
   updatedAt: Date;
 }
 
-export class RegistrantLite {
+export interface RegistrantLite {
   id: string;
   firstName: string;
   lastName: string;

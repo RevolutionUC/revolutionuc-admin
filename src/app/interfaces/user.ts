@@ -1,11 +1,11 @@
-export class User {
+export interface User {
   id?: string;
   username: string;
   password?: string;
   role: 'SUDO' | 'ADMIN' | 'JUDGE' | 'HACKER';
 }
 
-export class Login {
+export interface Login {
   token: string
   user: User
 }
