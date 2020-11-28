@@ -3,7 +3,7 @@ import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 
 import { SudoService } from '../../services/sudo.service';
-import { User } from '../../interfaces/User';
+import { User } from '../../interfaces/user';
 import { NewUserComponent } from './new-user/new-user.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 
