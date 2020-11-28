@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Pagination } from '../../interfaces/pagination';
 import { Registrant, RegistrantLite } from '../../interfaces/registrant';
-import { SendEmailDto } from 'src/app/interfaces/email';
+import { SendEmailDto } from '../../interfaces/email';
 
 @Injectable({
   providedIn: 'root'

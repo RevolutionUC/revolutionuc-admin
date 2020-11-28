@@ -4,8 +4,8 @@ import { PageEvent } from '@angular/material/paginator';
 import { BehaviorSubject, combineLatest, Observable, of, timer } from 'rxjs';
 import { catchError, debounce, flatMap, map } from 'rxjs/operators';
 
-import { RegistrantLite } from 'src/app/interfaces/registrant';
-import { Pagination } from 'src/app/interfaces/pagination';
+import { RegistrantLite } from '../../interfaces/registrant';
+import { Pagination } from '../../interfaces/pagination';
 import { RegistrantViewComponent } from './registrant-view/registrant-view.component';
 import { RegistrantsService } from './registrants.service';
 import { SendEmailDialogComponent } from './send-email-dialog/send-email-dialog.component';

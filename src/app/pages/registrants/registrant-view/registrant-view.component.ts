@@ -2,7 +2,7 @@ import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialog } from '@angular/material/dialog';
 import { map } from 'rxjs/operators';
 
-import { Registrant, RegistrantLite } from 'src/app/interfaces/registrant';
+import { Registrant, RegistrantLite } from '../../../interfaces/registrant';
 import { RegistrantsService } from '../registrants.service';
 import { SendEmailDialogComponent } from '../send-email-dialog/send-email-dialog.component';
 

@@ -2,8 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { BehaviorSubject } from 'rxjs';
 
-import { SudoService } from 'src/app/services/sudo.service';
-import { User } from 'src/app/interfaces/User';
+import { SudoService } from '../../services/sudo.service';
+import { User } from '../../interfaces/User';
 import { NewUserComponent } from './new-user/new-user.component';
 import { DeleteConfirmationComponent } from './delete-confirmation/delete-confirmation.component';
 

@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
-import { SudoService } from 'src/app/services/sudo.service';
+import { SudoService } from '../../../services/sudo.service';
 
 @Component({
   selector: 'app-new-user',

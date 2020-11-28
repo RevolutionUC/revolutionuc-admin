@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
-import { SendEmailDto } from 'src/app/interfaces/email';
+import { SendEmailDto } from '../../../interfaces/email';
 import { RegistrantsService } from '../registrants.service';
 
 @Component({
