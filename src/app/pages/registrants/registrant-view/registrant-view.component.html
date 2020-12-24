@@ -22,7 +22,11 @@
     <button mat-button color="primary" (click)="closeDialog()" [disabled]="registrant.emailVerfied">
       {{registrant.emailVerfied ? 'Email Verified' : 'Verify Email'}}
     </button>
-    
+
+    <button mat-button color="primary" (click)="closeDialog()" [disabled]="registrant.confirmedAttendance1 === 'true'">
+      {{registrant.confirmedAttendance1 === 'true' ? 'Attendance Confirmed' : 'Confirm Attendance'}}
+    </button>
+
     <ng-container *ngIf="registrant.checkedIn; then uncheckInBtn else checkInBtn"></ng-container>
     <ng-template #checkInBtn>
       <button mat-button color="accent" (click)="closeDialog()">Check In</button>
