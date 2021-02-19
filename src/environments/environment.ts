@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: 'http://localhost:3000/api/v2'
+  BASE_URL: 'https://revolutionuc-api.herokuapp.com/api/v2'
 };
 
 /*

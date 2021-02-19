@@ -31,6 +31,12 @@ export class RegistrantViewComponent implements OnInit {
     ).subscribe(registrant => this.registrant = registrant);
   }
 
+  verifyEmail() {
+    this.service.verifyRegistrant(this.registrant.id).subscribe(() => {
+      this.registrant.emailVerfied = true;
+    });
+  }
+
   sendEmail() {
     this.dialog.open(SendEmailDialogComponent, { width: `50%`, data: this.registrant.email });
   }

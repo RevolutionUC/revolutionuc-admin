@@ -27,8 +27,12 @@ export class RegistrantsService {
     return this.http.post<void>(`${this.BASE_URL}/registrants/email`, payload);
   }
 
+  verifyRegistrant(uuid: string) {
+    return this.http.post<void>(`${this.BASE_URL}/registrants/${uuid}/verify`, {});
+  }
+
   checkInUser(uuid: string) {
-    return this.http.get(`${this.BASE_URL}/registrants/${uuid}/checkin`);
+    return this.http.post<void>(`${this.BASE_URL}/registrants/${uuid}/checkin`, {});
   }
 
   checkOutUser(uuid: string) {

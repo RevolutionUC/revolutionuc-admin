@@ -19,7 +19,7 @@
     <p><strong>Created at: </strong>{{registrant.createdAt}}</p>
   </div>
   <div mat-dialog-actions>
-    <button mat-button color="primary" (click)="closeDialog()" [disabled]="registrant.emailVerfied">
+    <button mat-button color="primary" [disabled]="registrant.emailVerfied" (click)="verifyEmail()">
       {{registrant.emailVerfied ? 'Email Verified' : 'Verify Email'}}
     </button>
 
