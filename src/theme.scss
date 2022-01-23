@@ -1,6 +1,6 @@
-@import '~@angular/material/theming';
+@use '~@angular/material' as mat;
 
-@include mat-core();
+@include mat.core();
 
 $revuc-primary-colors: (
   50: #ede8f3,
@@ -14,16 +14,16 @@ $revuc-primary-colors: (
   800: #4e3287,
   900: #3f2776,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $light-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: white,
+    600: white,
+    700: white,
+    800: white,
+    900: white
   )
 );
 
@@ -39,24 +39,24 @@ $revuc-accent-colors: (
   800: #006ec1,
   900: #004e9e,
   contrast: (
-    50: $dark-primary-text,
-    100: $dark-primary-text,
-    200: $dark-primary-text,
-    300: $dark-primary-text,
-    400: $dark-primary-text,
-    500: $dark-primary-text,
-    600: $light-primary-text,
-    700: $light-primary-text,
-    800: $light-primary-text,
-    900: $light-primary-text
+    50: rgba(black, 0.87),
+    100: rgba(black, 0.87),
+    200: rgba(black, 0.87),
+    300: rgba(black, 0.87),
+    400: rgba(black, 0.87),
+    500: rgba(black, 0.87),
+    600: white,
+    700: white,
+    800: white,
+    900: white
   )
 );
 
-$revuc-primary: mat-palette($revuc-primary-colors, 800, 300, 900);
-$revuc-accent: mat-palette($revuc-accent-colors, 200, 100, 500);
+$revuc-primary: mat.define-palette($revuc-primary-colors, 800, 300, 900);
+$revuc-accent: mat.define-palette($revuc-accent-colors, 200, 100, 500);
 
-$revuc-warn: mat-palette($mat-red);
+$revuc-warn: mat.define-palette(mat.$red-palette);
 
-$revuc-theme: mat-light-theme($revuc-primary, $revuc-accent, $revuc-warn);
+$revuc-theme: mat.define-light-theme($revuc-primary, $revuc-accent, $revuc-warn);
 
-@include angular-material-theme($revuc-theme);
+@include mat.all-component-themes($revuc-theme);
