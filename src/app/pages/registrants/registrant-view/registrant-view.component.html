@@ -1,4 +1,4 @@
-<h2 mat-dialog-title>{{reg.firstName}} {{reg.lastName}}</h2>
+<h2 mat-dialog-title>{{reg.firstName}} {{reg.lastName}} <small>({{reg.id}})</small></h2>
 <ng-container *ngIf="registrant; else loading">
   <div mat-dialog-content>
     <p><strong>Email: </strong>{{registrant.email}}</p>
@@ -34,7 +34,7 @@
     <ng-template #uncheckInBtn>
       <button mat-button color="warn" (click)="closeDialog()">Un-check In</button>
     </ng-template>
-    
+
     <button mat-button (click)="sendEmail()">Send Email</button>
     <button mat-button color="primary" (click)="closeDialog()">Close</button>
   </div>
