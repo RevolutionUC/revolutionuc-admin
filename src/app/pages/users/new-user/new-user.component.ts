@@ -1,27 +1,31 @@
-import { Component } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
-import { MatDialogRef } from '@angular/material/dialog';
-import { SudoService } from '../../../services/sudo.service';
+import { Component } from "@angular/core";
+import { FormControl, FormGroup, Validators } from "@angular/forms";
+import { MatLegacyDialogRef as MatDialogRef } from "@angular/material/legacy-dialog";
+import { SudoService } from "../../../services/sudo.service";
 
 @Component({
-  selector: 'app-new-user',
-  templateUrl: './new-user.component.html',
-  styleUrls: ['./new-user.component.css']
+  selector: "app-new-user",
+  templateUrl: "./new-user.component.html",
+  styleUrls: ["./new-user.component.css"],
 })
 export class NewUserComponent {
   newUser = new FormGroup({
-    username: new FormControl(``),
-    password: new FormControl(``),
-    role: new FormControl(``)
-  })
+    username: new FormControl(``, {
+      validators: [Validators.required],
+    }),
+    password: new FormControl(``, {
+      validators: [Validators.required],
+    }),
+    role: new FormControl<"SUDO" | "ADMIN" | "JUDGE" | "HACKER">(`SUDO`),
+  });
 
-  isSubmitting = false
+  isSubmitting = false;
 
-  error = false
+  error = false;
 
   constructor(
     private service: SudoService,
-    public ref: MatDialogRef<NewUserComponent>,
+    public ref: MatDialogRef<NewUserComponent>
   ) {}
 
   closeDialog() {
@@ -29,18 +33,18 @@ export class NewUserComponent {
   }
 
   onSubmit() {
-    if(this.newUser.valid) {
+    if (this.newUser.valid) {
       this.isSubmitting = true;
       this.error = false;
-      this.service.createUser(this.newUser.value).subscribe({
+      this.service.createUser(this.newUser.getRawValue()).subscribe({
         next: () => {
           this.isSubmitting = false;
           this.closeDialog();
         },
-        error: err => {
+        error: (err) => {
           this.isSubmitting = false;
           this.error = true;
-        }
+        },
       });
     }
   }
