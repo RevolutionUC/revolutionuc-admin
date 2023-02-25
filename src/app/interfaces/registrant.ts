@@ -15,7 +15,7 @@ export interface Registrant {
   githubUsername: string;
   dateOfBirth: string;
   allergens: string[];
-  confirmedAttendance1: string;
+  confirmedAttendance: boolean;
   otherAllergens: string;
   educationLevel: string;
   checkedIn: boolean;

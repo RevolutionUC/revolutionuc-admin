@@ -1,4 +1,7 @@
-<h2 mat-dialog-title>{{reg.firstName}} {{reg.lastName}} <small>({{reg.id}})</small></h2>
+<h2 mat-dialog-title>
+  <ng-container *ngIf="isMinor">(Minor)</ng-container>
+  {{reg.firstName}} {{reg.lastName}} <small>({{reg.id}})</small>
+</h2>
 <ng-container *ngIf="registrant; else loading">
   <div mat-dialog-content>
     <p><strong>Email: </strong>{{registrant.email}}</p>
@@ -23,8 +26,8 @@
       {{registrant.emailVerfied ? 'Email Verified' : 'Verify Email'}}
     </button>
 
-    <button mat-button color="primary" (click)="closeDialog()" [disabled]="registrant.confirmedAttendance1 === 'true'">
-      {{registrant.confirmedAttendance1 === 'true' ? 'Attendance Confirmed' : 'Confirm Attendance'}}
+    <button mat-button color="primary" (click)="confirmAttendance()" [disabled]="registrant.confirmedAttendance">
+      {{registrant.confirmedAttendance ? 'Attendance Confirmed' : 'Confirm Attendance'}}
     </button>
 
     <ng-container *ngIf="registrant.checkedIn; then uncheckInBtn else checkInBtn"></ng-container>
@@ -39,6 +42,7 @@
     <button mat-button color="primary" (click)="closeDialog()">Close</button>
   </div>
 </ng-container>
+<ng-container *ngIf="confirmLimitReached">Confirmation Limit Reached, Please Waitlist</ng-container>
 <ng-template #loading>
   <mat-spinner></mat-spinner>
 </ng-template>
