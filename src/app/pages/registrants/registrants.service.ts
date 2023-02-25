@@ -51,4 +51,8 @@ export class RegistrantsService {
   checkOutUser(uuid: string) {
     return this.http.get(`${this.BASE_URL}/registrants/${uuid}/checkout`);
   }
+
+  getCheckedInCount() {
+    return this.http.get<number>(`${this.BASE_URL}/checkedInCount`);
+  }
 }

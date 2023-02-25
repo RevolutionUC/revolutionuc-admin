@@ -38,6 +38,7 @@ export class RegistrantsComponent implements OnInit {
 
   ngOnInit() {
     this.searchRegistrants();
+    this.service.getCheckedInCount().subscribe(count => this.numCheckedIn = count);
   }
 
   searchRegistrants() {
