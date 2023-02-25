@@ -72,6 +72,12 @@ export class RegistrantViewComponent implements OnInit {
     });
   }
 
+  checkin() {
+    this.service.checkInUser(this.registrant.id).subscribe(() => {
+      this.registrant.checkedIn = true;
+    });
+  }
+
   closeDialog() {
     this.ref.close();
   }
