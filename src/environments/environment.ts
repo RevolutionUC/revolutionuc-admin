@@ -4,7 +4,7 @@
 
 export const environment = {
   production: false,
-  BASE_URL: "https://web-production-66b6.up.railway.app/api/v2",
+  BASE_URL: "https://revolutionuc-api.onrender.com/api/v2",
 };
 
 /*
