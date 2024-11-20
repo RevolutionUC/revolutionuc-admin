@@ -39,15 +39,7 @@ export class DashboardService {
     return this.http.get(`${this.BASE_URL}/registrants/${uuid}/checkout`);
   }
 
-  isUserMinor(dateOfBirth: string) {
-    const date = new Date(dateOfBirth);
-    const ageDifMs = new Date('2020-02-22').getTime() - date.getTime();
-    const ageDate = new Date(ageDifMs);
-    const age = Math.abs(ageDate.getUTCFullYear() - 1970);
-    if (age > 17) {
-      return false;
-    } else {
-      return true;
-    }
+  isUserMinor(age: number) {
+    return age < 18;
   }
 }

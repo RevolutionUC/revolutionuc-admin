@@ -13,7 +13,7 @@ export interface Registrant {
   hackathons: number;
   shirtSize: string;
   githubUsername: string;
-  dateOfBirth: string;
+  age: number;
   allergens: string[];
   confirmedAttendance: boolean;
   otherAllergens: string;

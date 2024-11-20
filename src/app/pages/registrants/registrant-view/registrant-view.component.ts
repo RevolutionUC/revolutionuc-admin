@@ -36,13 +36,13 @@ export class RegistrantViewComponent implements OnInit {
       .pipe(
         map((registrant) => ({
           ...registrant,
-          dob: registrant.dateOfBirth,
-          dateOfBirth: new Date(registrant.dateOfBirth).toLocaleDateString(),
+          // dob: registrant.dateOfBirth,
+          // dateOfBirth: new Date(registrant.dateOfBirth).toLocaleDateString(),
         }))
       )
       .subscribe((registrant) => {
         this.registrant = registrant;
-        this.isMinor = getAge(registrant.dob) < 18;
+        this.isMinor = registrant.age < 18;
         console.log({ registrant });
       });
   }

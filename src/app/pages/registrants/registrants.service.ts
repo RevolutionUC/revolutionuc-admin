@@ -15,7 +15,7 @@ export class RegistrantsService {
 
   searchRegistrants({ page = 1, limit = 10, q = "" }) {
     return this.http.get<Pagination<RegistrantLite>>(
-      `${this.BASE_URL}/registrants?q=${q}&page=${page}&limit=${limit}&sortKey=dateOfBirth&sortOrder=DESC`
+      `${this.BASE_URL}/registrants?q=${q}&page=${page}&limit=${limit}&sortKey=age&sortOrder=DESC`
     );
   }
 
