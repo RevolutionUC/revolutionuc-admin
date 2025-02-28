@@ -30,6 +30,8 @@ export class RegistrantsComponent implements OnInit {
   ];
 
   numCheckedIn: number;
+  numConfirmedCheckedIn: number;
+  numWaitlistedCheckedIn: number;
 
   constructor(
     private service: RegistrantsService,
@@ -38,7 +40,14 @@ export class RegistrantsComponent implements OnInit {
 
   ngOnInit() {
     this.searchRegistrants();
-    this.service.getCheckedInCount().subscribe(count => this.numCheckedIn = count);
+    this.service.getCheckedInCount().subscribe(count => {
+      this.numCheckedIn = count;
+      this.calculateWaitlistedCheckedIn();
+    });
+    this.service.getConfirmedCheckedInCount().subscribe(count => {
+      this.numConfirmedCheckedIn = count;
+      this.calculateWaitlistedCheckedIn();
+    });
   }
 
   searchRegistrants() {
@@ -76,5 +85,9 @@ export class RegistrantsComponent implements OnInit {
 
   sendEmailToAll() {
     this.dialog.open(SendEmailDialogComponent, { width: `50%`, data: `all` });
+  }
+
+  calculateWaitlistedCheckedIn() {
+    this.numWaitlistedCheckedIn = this.numCheckedIn - this.numConfirmedCheckedIn;
   }
 }

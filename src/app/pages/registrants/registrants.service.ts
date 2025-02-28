@@ -55,4 +55,8 @@ export class RegistrantsService {
   getCheckedInCount() {
     return this.http.get<number>(`${this.BASE_URL}/checkedInCount`);
   }
+
+  getConfirmedCheckedInCount() {
+    return this.http.get<number>(`${this.BASE_URL}/confirmedCheckedInCount`);
+  }
 }
